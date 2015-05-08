@@ -30,9 +30,10 @@ namespace WebService
             config.SetEntitySetAccessRule("Categoria", EntitySetRights.All);
             config.SetEntitySetAccessRule("ProducteLog", EntitySetRights.AllRead);
             config.SetEntitySetAccessRule("CategoriaLog", EntitySetRights.AllRead);
+            config.SetServiceOperationAccessRule("ara", ServiceOperationRights.AllRead);
             // config.SetServiceOperationAccessRule("MyServiceOperation", ServiceOperationRights.All);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
-            config.SetServiceOperationAccessRule("ara", ServiceOperationRights.AllRead);
+            
 
         }
         [WebGet]
