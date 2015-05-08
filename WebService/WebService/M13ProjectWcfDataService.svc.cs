@@ -32,6 +32,7 @@ namespace WebService
             config.SetEntitySetAccessRule("CategoriaLog", EntitySetRights.AllRead);
             // config.SetServiceOperationAccessRule("MyServiceOperation", ServiceOperationRights.All);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
+            config.UseVerboseErrors = true;
         }
     }
 }
