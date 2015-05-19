@@ -17,6 +17,7 @@ namespace WebService
         public Client()
         {
             this.Comanda = new HashSet<Comanda>();
+            this.Localitzacio = new HashSet<Localitzacio>();
         }
     
         public int Id { get; set; }
@@ -30,6 +31,6 @@ namespace WebService
     
         public virtual Comercial Comercial { get; set; }
         public virtual ICollection<Comanda> Comanda { get; set; }
-        public virtual Localitzacio Localitzacio { get; set; }
+        public virtual ICollection<Localitzacio> Localitzacio { get; set; }
     }
 }

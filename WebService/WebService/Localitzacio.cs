@@ -19,6 +19,7 @@ namespace WebService
         public string Direccio { get; set; }
         public Nullable<double> Latitud { get; set; }
         public Nullable<double> Longitud { get; set; }
+        public int ClientId { get; set; }
     
         public virtual Client Client { get; set; }
     }

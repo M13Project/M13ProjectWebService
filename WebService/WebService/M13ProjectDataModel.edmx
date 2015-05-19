@@ -53,9 +53,9 @@
         </EntityType>
         <EntityType Name="Comanda_Producte">
           <Key>
-            <PropertyRef Name="ComandaId" />
-            <PropertyRef Name="ProducteId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="ComandaId" Type="int" Nullable="false" />
           <Property Name="ProducteId" Type="int" Nullable="false" />
           <Property Name="Quantitat" Type="int" Nullable="false" />
@@ -78,6 +78,7 @@
           <Property Name="Direccio" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="Latitud" Type="float" />
           <Property Name="Longitud" Type="float" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Producte">
           <Key>
@@ -186,13 +187,13 @@
         </Association>
         <Association Name="fk_LocCli">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Localitzacio" Type="Self.Localitzacio" Multiplicity="0..1" />
+          <End Role="Localitzacio" Type="Self.Localitzacio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Localitzacio">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -313,9 +314,9 @@
         </EntityType>
         <EntityType Name="Comanda_Producte">
           <Key>
-            <PropertyRef Name="ComandaId" />
-            <PropertyRef Name="ProducteId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ComandaId" Type="Int32" Nullable="false" />
           <Property Name="ProducteId" Type="Int32" Nullable="false" />
           <Property Name="Quantitat" Type="Int32" Nullable="false" />
@@ -342,6 +343,7 @@
           <Property Name="Direccio" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Latitud" Type="Double" />
           <Property Name="Longitud" Type="Double" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.fk_LocCli" FromRole="Localitzacio" ToRole="Client" />
         </EntityType>
         <EntityType Name="Producte">
@@ -431,13 +433,13 @@
         </Association>
         <Association Name="fk_LocCli">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Localitzacio" Type="Self.Localitzacio" Multiplicity="0..1" />
+          <End Role="Localitzacio" Type="Self.Localitzacio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Localitzacio">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -477,7 +479,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="m13_projectEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="m13_projectEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="CategoriaLog" EntityType="Self.CategoriaLog" />
@@ -527,7 +529,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="m13_projectModelStoreContainer" CdmEntityContainer="m13_projectEntities">
+        <EntityContainerMapping StorageEntityContainer="m13_projectModelStoreContainer" CdmEntityContainer="m13_projectEntities1">
           <EntitySetMapping Name="Administrador">
             <EntityTypeMapping TypeName="m13_projectModel.Administrador">
               <MappingFragment StoreEntitySet="Administrador">
@@ -581,6 +583,7 @@
           <EntitySetMapping Name="Comanda_Producte">
             <EntityTypeMapping TypeName="m13_projectModel.Comanda_Producte">
               <MappingFragment StoreEntitySet="Comanda_Producte">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ComandaId" ColumnName="ComandaId" />
                 <ScalarProperty Name="ProducteId" ColumnName="ProducteId" />
                 <ScalarProperty Name="Quantitat" ColumnName="Quantitat" />
@@ -605,6 +608,7 @@
                 <ScalarProperty Name="Direccio" ColumnName="Direccio" />
                 <ScalarProperty Name="Latitud" ColumnName="Latitud" />
                 <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

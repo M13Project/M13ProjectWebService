@@ -14,6 +14,7 @@ namespace WebService
     
     public partial class Comanda_Producte
     {
+        public int Id { get; set; }
         public int ComandaId { get; set; }
         public int ProducteId { get; set; }
         public int Quantitat { get; set; }

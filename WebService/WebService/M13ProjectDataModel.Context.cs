@@ -13,10 +13,10 @@ namespace WebService
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class m13_projectEntities : DbContext
+    public partial class m13_projectEntities1 : DbContext
     {
-        public m13_projectEntities()
-            : base("name=m13_projectEntities")
+        public m13_projectEntities1()
+            : base("name=m13_projectEntities1")
         {
         }
     
