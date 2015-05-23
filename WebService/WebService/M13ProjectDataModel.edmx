@@ -32,6 +32,7 @@
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Dni" Type="char" MaxLength="9" Nullable="false" />
@@ -45,20 +46,24 @@
         <EntityType Name="Comanda">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Lliurada" Type="bit" Nullable="false" />
           <Property Name="Data" Type="date" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ComercialId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comanda_Producte">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="ComandaId" Type="int" Nullable="false" />
           <Property Name="ProducteId" Type="int" Nullable="false" />
           <Property Name="Quantitat" Type="int" Nullable="false" />
+          <Property Name="ComercialId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comercial">
           <Key>
@@ -72,13 +77,16 @@
         <EntityType Name="Localitzacio">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="CodiPostal" Type="int" />
+          <Property Name="CodiPostal" Type="varchar" MaxLength="10" />
           <Property Name="Direccio" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Poblacio" Type="varchar" MaxLength="100" />
           <Property Name="Latitud" Type="float" />
           <Property Name="Longitud" Type="float" />
           <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ComercialId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Producte">
           <Key>
@@ -143,9 +151,11 @@
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="ComercialId" />
             </Principal>
             <Dependent Role="Comanda">
               <PropertyRef Name="ClientId" />
+              <PropertyRef Name="ComercialId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -155,9 +165,11 @@
           <ReferentialConstraint>
             <Principal Role="Comanda">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="ComercialId" />
             </Principal>
             <Dependent Role="Comanda_Producte">
               <PropertyRef Name="ComandaId" />
+              <PropertyRef Name="ComercialId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -191,9 +203,11 @@
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="ComercialId" />
             </Principal>
             <Dependent Role="Localitzacio">
               <PropertyRef Name="ClientId" />
+              <PropertyRef Name="ComercialId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -288,6 +302,7 @@
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Dni" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
@@ -304,22 +319,26 @@
         <EntityType Name="Comanda">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Lliurada" Type="Boolean" Nullable="false" />
           <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ComercialId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.fk_ComCli" FromRole="Comanda" ToRole="Client" />
           <NavigationProperty Name="Comanda_Producte" Relationship="Self.fk_ComProCom" FromRole="Comanda" ToRole="Comanda_Producte" />
         </EntityType>
         <EntityType Name="Comanda_Producte">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ComandaId" Type="Int32" Nullable="false" />
           <Property Name="ProducteId" Type="Int32" Nullable="false" />
           <Property Name="Quantitat" Type="Int32" Nullable="false" />
+          <Property Name="ComercialId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Comanda" Relationship="Self.fk_ComProCom" FromRole="Comanda_Producte" ToRole="Comanda" />
           <NavigationProperty Name="Producte" Relationship="Self.fk_ComProPro" FromRole="Comanda_Producte" ToRole="Producte" />
         </EntityType>
@@ -337,13 +356,16 @@
         <EntityType Name="Localitzacio">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="ComercialId" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="CodiPostal" Type="Int32" />
+          <Property Name="CodiPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Direccio" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Poblacio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Latitud" Type="Double" />
           <Property Name="Longitud" Type="Double" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ComercialId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.fk_LocCli" FromRole="Localitzacio" ToRole="Client" />
         </EntityType>
         <EntityType Name="Producte">
@@ -425,9 +447,11 @@
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="ComercialId" />
             </Principal>
             <Dependent Role="Comanda">
               <PropertyRef Name="ClientId" />
+              <PropertyRef Name="ComercialId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -437,9 +461,11 @@
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="ComercialId" />
             </Principal>
             <Dependent Role="Localitzacio">
               <PropertyRef Name="ClientId" />
+              <PropertyRef Name="ComercialId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -449,9 +475,11 @@
           <ReferentialConstraint>
             <Principal Role="Comanda">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="ComercialId" />
             </Principal>
             <Dependent Role="Comanda_Producte">
               <PropertyRef Name="ComandaId" />
+              <PropertyRef Name="ComercialId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -577,6 +605,7 @@
                 <ScalarProperty Name="Lliurada" ColumnName="Lliurada" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ComercialId" ColumnName="ComercialId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -587,6 +616,7 @@
                 <ScalarProperty Name="ComandaId" ColumnName="ComandaId" />
                 <ScalarProperty Name="ProducteId" ColumnName="ProducteId" />
                 <ScalarProperty Name="Quantitat" ColumnName="Quantitat" />
+                <ScalarProperty Name="ComercialId" ColumnName="ComercialId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -606,9 +636,11 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CodiPostal" ColumnName="CodiPostal" />
                 <ScalarProperty Name="Direccio" ColumnName="Direccio" />
+                <ScalarProperty Name="Poblacio" ColumnName="Poblacio" />
                 <ScalarProperty Name="Latitud" ColumnName="Latitud" />
                 <ScalarProperty Name="Longitud" ColumnName="Longitud" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ComercialId" ColumnName="ComercialId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

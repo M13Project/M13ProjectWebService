@@ -34,8 +34,15 @@ namespace WebService
             config.SetEntitySetAccessRule("*", EntitySetRights.All);
 
             // config.SetServiceOperationAccessRule("MyServiceOperation", ServiceOperationRights.All);
+            config.SetServiceOperationAccessRule("ara", ServiceOperationRights.AllRead);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
             config.UseVerboseErrors = true;
+        }
+
+        [WebGet]
+        public DateTime ara()
+        {
+            return DateTime.Now;
         }
     }
 }

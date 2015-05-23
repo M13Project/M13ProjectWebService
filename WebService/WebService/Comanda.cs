@@ -23,6 +23,7 @@ namespace WebService
         public bool Lliurada { get; set; }
         public System.DateTime Data { get; set; }
         public int ClientId { get; set; }
+        public int ComercialId { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual ICollection<Comanda_Producte> Comanda_Producte { get; set; }

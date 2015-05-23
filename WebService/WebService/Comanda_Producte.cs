@@ -18,6 +18,7 @@ namespace WebService
         public int ComandaId { get; set; }
         public int ProducteId { get; set; }
         public int Quantitat { get; set; }
+        public int ComercialId { get; set; }
     
         public virtual Comanda Comanda { get; set; }
         public virtual Producte Producte { get; set; }

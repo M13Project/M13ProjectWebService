@@ -15,11 +15,13 @@ namespace WebService
     public partial class Localitzacio
     {
         public int Id { get; set; }
-        public Nullable<int> CodiPostal { get; set; }
+        public string CodiPostal { get; set; }
         public string Direccio { get; set; }
+        public string Poblacio { get; set; }
         public Nullable<double> Latitud { get; set; }
         public Nullable<double> Longitud { get; set; }
         public int ClientId { get; set; }
+        public int ComercialId { get; set; }
     
         public virtual Client Client { get; set; }
     }
